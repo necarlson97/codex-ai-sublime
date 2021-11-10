@@ -24,7 +24,7 @@ class CodexCommand(sublime_plugin.TextCommand):
         Pass the given text to Open AI's codex (davinci)
         model, returning the response
         """
-        settings = sublime.load_settings('Default.sublime-settings')
+        settings = sublime.load_settings('codex-ai.sublime-settings')
         key = settings.get('open_ai_key', None)
         if key is None:
             msg = "Please put an 'open_ai_key' in the CodexAI package settings"
