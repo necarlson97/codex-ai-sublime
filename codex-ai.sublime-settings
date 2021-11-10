@@ -1,0 +1,7 @@
+{
+    // Your api key linked to your Open AI account
+    // See https://beta.openai.com/account/api-keys
+    "open_ai_key": "YOUR-OPENAI-API-KEY",
+    // The number of tokens to request from OpenAI
+    "max_tokens": 100,
+}
