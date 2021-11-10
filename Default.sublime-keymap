@@ -1,7 +1,7 @@
 [
   // Request the highlighted text from codex
   {
-    "keys": ["ctrl+shift+f"],
+    "keys": ["ctrl+shift+insert"],
     "command": "codex",
   },
 ]
