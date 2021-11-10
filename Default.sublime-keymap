@@ -1,0 +1,7 @@
+[
+  // Request the highlighted text from codex
+  {
+    "keys": ["ctrl+shift+f"],
+    "command": "codex",
+  },
+]
