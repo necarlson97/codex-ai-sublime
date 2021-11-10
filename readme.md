@@ -5,7 +5,7 @@ Work alongside cutting edge AI to write code - automate the boilerplate, and foc
 
 ## Use
 First: input your OpenAI API key in the preferences.
-Then, simply highlight whatever code you would like to complete, then use the keybinding 'ctrl+shift+f' to see how Codex would complete that prompt.
+Then, simply highlight whatever code you would like to complete, then use the keybinding 'ctrl+shift+insert' to see how Codex would complete that prompt.
 
 ## Tips
 Codex is great for filling out bite-sized methods - things like reading a file, creating a server, etc - then you can focus on orchestrating those pieces into a larger project.
