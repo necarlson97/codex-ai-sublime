@@ -4,4 +4,6 @@
     "open_ai_key": "YOUR-OPENAI-API-KEY",
     // The number of tokens to request from OpenAI
     "max_tokens": 100,
+    // The time allowed for the codex to provide a response
+    "max_seconds": 60,
 }
