@@ -1,5 +1,6 @@
 # Codex AI Sublime Package
 Work alongside cutting edge AI to write code - automate the boilerplate, and focus on the creative side of coding.
+Can be used as code-autocomplete, to help generate boilerplate, to translate between different programming languages, and more.
 
 ![gif](sublime-codex.gif)
 
@@ -8,12 +9,13 @@ This relies entirely upon [OpenAI's API](https://openai.com/blog/openai-api/). Y
 You are trusting an outside organization with the code you send them, and it is not encrypted - this cannot be used for HIPPA info, confidential data, etc.
 Thanks to OpenAI for their work on this tech - this is not an official package.
 
-Powerful technology can be dangerous. Please use this (and all AI tools) with kindness, care, and the greater good in mind. Supervise all it creates, and, as always, do not run code you do not trust or understand.
+See [OpenAI](https://openai.com/blog/openai-codex/) for more details on the technology.
+
+Powerful technology can be dangerous. Please use this (and all AI tools) with kindness, care, and the greater good in mind. Supervise all it creates, and, as always, do not run code you do not trust or understand. [Be responsible.](https://beta.openai.com/policies/codex-terms)
 
 ## Use
 First: input your OpenAI API key in the preferences.
 Then, simply highlight whatever code you would like to complete, then use the keybinding 'ctrl+shift+insert' to see how Codex would complete that prompt.
-
 
 ## Tips
 Codex is great for filling out bite-sized methods - things like reading a file, creating a server, etc - then you can focus on orchestrating those pieces into a larger project.
