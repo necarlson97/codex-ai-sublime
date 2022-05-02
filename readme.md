@@ -17,12 +17,14 @@ Powerful technology can be dangerous. Please use this (and all AI tools) with ki
 First: input your OpenAI API key in the preferences.
 
 ### Completion
-To have the Codex AI try to generate code/text, simply simply highlight whatever prompt you would like to complete, then use the keybinding 'ctrl+shift+insert' to see how Codex would complete that prompt.
+To have the Codex AI try to generate code/text, simply simply highlight whatever prompt you would like to complete, then use the keybinding 'ctrl+shift+insert' to see how Codex would complete that prompt.  
+
 One can also use the command pallet (ctrl+shift+p) and type 'Codex AI' to see the 'Generate' command.
 
 
 ### Editing
-You could also have Codex AI try edit your code -perhaps to translate it to a different langue, or try a more terse implementation, or add documentation. Highlight whatever code you would like edited, then use the keybinding 'ctrl+shift+end' to instruct Codex to re-work that area.
+You could also have Codex AI try edit your code -perhaps to translate it to a different langue, or try a more terse implementation, or add documentation. Highlight whatever code you would like edited, then use the keybinding 'ctrl+shift+end' to instruct Codex to re-work that area.  
+
 One can also use the command pallet (ctrl+shift+p) and type 'Codex AI' to see the 'Instruct' command.
 
 You can type whatever you like when asked for the editing instruction. Short, clear instructions work best, but feel free to experiment with more abstract concepts.
