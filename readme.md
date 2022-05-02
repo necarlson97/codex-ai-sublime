@@ -15,7 +15,32 @@ Powerful technology can be dangerous. Please use this (and all AI tools) with ki
 
 ## Use
 First: input your OpenAI API key in the preferences.
-Then, simply highlight whatever code you would like to complete, then use the keybinding 'ctrl+shift+insert' to see how Codex would complete that prompt.
+
+### Completion
+To have the Codex AI try to generate code/text, simply simply highlight whatever prompt you would like to complete, then use the keybinding 'ctrl+shift+insert' to see how Codex would complete that prompt.  
+
+One can also use the command pallet (ctrl+shift+p) and type 'Codex AI' to see the 'Generate' command.
+
+
+### Editing
+You could also have Codex AI try edit your code -perhaps to translate it to a different langue, or try a more terse implementation, or add documentation. Highlight whatever code you would like edited, then use the keybinding 'ctrl+shift+end' to instruct Codex to re-work that area.  
+
+One can also use the command pallet (ctrl+shift+p) and type 'Codex AI' to see the 'Instruct' command.
+
+You can type whatever you like when asked for the editing instruction. Short, clear instructions work best, but feel free to experiment with more abstract concepts.
+
+At the time of writing (5/22), OpenAPI has this 'edits' endpoint in beta. It is thus free to use - but at times unstable. If your text is replaced with:
+```
+{
+  "error": {
+    "message": "Could not edit text. Please sample again or try with a different temperature setting, input, or instruction.",
+    "type": "invalid_edit",
+    "param": null,
+    "code": null
+  }
+}
+```
+codex was unable to help with that specific prompt and instruction. Simply 'ctrl+z' to get your prompt back. Feel free to try again, perhaps with a different wording of the instruction.
 
 ## Tips
 Codex is great for filling out bite-sized methods - things like reading a file, creating a server, etc - then you can focus on orchestrating those pieces into a larger project.
@@ -26,4 +51,4 @@ Including a method name and a clear, standardized comment is a great way to turn
 Similarly, you must include some of the conventions / syntax of the language you want codex to generate.(e.g., 'def method_name():' for python vs 'static void methodName() {' for java)
 
 
-Codex is trained on real users code, and though it can do some extrapolation on it's own, it will likely fail on niche, novel problems. However, for the same, syntax y code you have googled a dozen times, Codex is perfect. ("How do I unpack an .MP4 again? Ah, Codex will know!")
+Codex is trained on real user's code. Though it can do some extrapolation on it's own, it will likely fail on niche, novel problems. However, for the same boring syntax-y code you have googled a dozen times, Codex is perfect. ("How do I unpack an .MP4 again? Ah, Codex will know!")
