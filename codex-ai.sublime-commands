@@ -1,3 +1,4 @@
 [
-    { "caption": "Codex AI: Generate AI text from highlighted prompt", "command": "codex" },
+    { "caption": "Codex AI: Generate AI text from highlighted prompt", "command": "completion_codex" },
+    { "caption": "Codex AI: Instruct AI to edit highlighted text", "command": "edit_codex" },
 ]
