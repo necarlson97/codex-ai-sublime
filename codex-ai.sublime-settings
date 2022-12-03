@@ -1,9 +1,16 @@
 {
-    // Your api key linked to your Open AI account
-    // See https://beta.openai.com/account/api-keys
-    "open_ai_key": "YOUR-OPENAI-API-KEY",
-    // The number of tokens to request from OpenAI
-    "max_tokens": 100,
-    // The time allowed for the codex to provide a response
+    "open_ai_key": "<put your key here from https://beta.openai.com/account/api-keys>",
     "max_seconds": 60,
+    "completions": {
+        "model": "text-davinci-003",
+        "temperature": 0.0,
+        "top_p": 1,
+        "max_tokens": 100,
+        "keep_prompt_text": true,
+    },
+    "edits": {
+        "model": "text-davinci-edit-003",
+        "temperature": 0.4,
+        "top_p": 1
+    },
 }

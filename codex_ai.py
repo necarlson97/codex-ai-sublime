@@ -2,7 +2,7 @@ import sublime
 import sublime_plugin
 
 import json
-import requests
+import http.client
 import threading
 
 
@@ -61,9 +61,8 @@ class CodexCommand(sublime_plugin.TextCommand):
         # Otherwise, we are done!
         self.view.run_command('replace_text', {
             "region": thread.region.to_tuple(),
-            "text": thread.prompt + thread.result
-        })
-        sublime.status_message("Codex has spoken.")
+            "text": thread.preText + thread.result
+        })        
 
 
 class CompletionCodexCommand(CodexCommand):
@@ -78,11 +77,21 @@ class CompletionCodexCommand(CodexCommand):
         # Gather data needed for codex, prep thread to run async
         region = self.view.sel()[0]
         settings = sublime.load_settings('codex-ai.sublime-settings')
+        settingsc = settings.get('completions')
+        printpromt = settingsc.get('keep_prompt_text')
         data = {
+            'model': settingsc.get('model',"text-davinci-003"),
             'prompt': self.view.substr(region),
-            'max_tokens': settings.get('max_tokens', 100),
+            'max_tokens': settingsc.get('max_tokens', 100),
+            'temperature': settingsc.get('temperature', 0),
+            'top_p': settingsc.get('top_p', 1),
         }
-        thread = AsyncCodex(region, 'davinci-codex/completions', data)
+        hasPreText=settingsc.get('keep_prompt_text')
+        if hasPreText:
+            preText=self.view.substr(region)
+        else:
+            preText=""
+        thread = AsyncCodex(region, 'completions', data, preText)
 
         # Perform the async fetching and editing
         thread.start()
@@ -104,12 +113,17 @@ class EditCodexCommand(CodexCommand):
         self.check_setup()
 
         # Gather data needed for codex, prep thread to run async
+        settings = sublime.load_settings('codex-ai.sublime-settings')
+        settingse = settings.get('edits')
         region = self.view.sel()[0]
         data = {
+            'model': settingse.get('edit_model',"text-davinci-edit-001"),
             'input': self.view.substr(region),
             'instruction': instruction,
+            'temperature': settingse.get('temperature', 0),
+            'top_p': settingse.get('top_p', 1),
         }
-        thread = AsyncCodex(region, 'code-davinci-edit-001/edits', data)
+        thread = AsyncCodex(region, 'edits', data, "")
 
         # Perform the async fetching and editing
         thread.start()
@@ -132,7 +146,7 @@ class AsyncCodex(threading.Thread):
     running = False
     result = None
 
-    def __init__(self, region, engine, data):
+    def __init__(self, region, endpoint, data, preText):
         """
         key - the open-ai given API key for this specific user
         prompt - the string of code/text to be operated on by GPT3
@@ -144,9 +158,10 @@ class AsyncCodex(threading.Thread):
         """
         super().__init__()
         self.region = region
-        self.engine = engine
+        self.endpoint = endpoint
         self.data = data
         self.prompt = data.get('prompt', "")
+        self.preText = preText
 
     def run(self):
         self.running = True
@@ -159,23 +174,23 @@ class AsyncCodex(threading.Thread):
         model, returning the response
         """
         settings = sublime.load_settings('codex-ai.sublime-settings')
-
-        response = requests.post(
-            'https://api.openai.com/v1/engines/' + self.engine,
-            headers={
-                'Authorization': "Bearer " + settings.get('open_ai_key', None),
-                'Content-Type': 'application/json',
-            },
-            data=json.dumps(self.data),
-            verify='/etc/ssl/certs'
-        )
-        respone_dict = response.json()
-
+        conn = http.client.HTTPSConnection('api.openai.com')
+        headers={
+            'Authorization': "Bearer " + settings.get('open_ai_key', None),
+            'Content-Type': 'application/json'
+        }
+        data=json.dumps(self.data)
+        conn.request('POST', '/v1/'+self.endpoint, data, headers)
+        response = conn.getresponse()
+        respone_dict=json.loads(response.read().decode())
         if respone_dict.get('Error', None):
             raise ValueError(respone_dict['Error'])
         else:
             choice = respone_dict.get('choices', [{}])[0]
-            ai_text = choice.get('text', response.text)
+            print(choice)
+            ai_text = choice['text']
+            useage = respone_dict['usage']['total_tokens']
+            sublime.status_message("Codex tokens used: "+str(useage))
         return ai_text
 
 
