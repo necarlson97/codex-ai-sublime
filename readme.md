@@ -13,17 +13,33 @@ See [OpenAI](https://openai.com/blog/openai-codex/) for more details on the tech
 
 Powerful technology can be dangerous. Please use this (and all AI tools) with kindness, care, and the greater good in mind. Supervise all it creates, and, as always, do not run code you do not trust or understand. [Be responsible.](https://beta.openai.com/policies/codex-terms)
 
+## Installation
+### Linux
+Use Package Control and find CodexAI
+### OSX
+Until upstream publishes this version for OSX in package control, do the following:
+1. checkout this github project somewhere other than your default Packages directory
+2. create a link to this github project in your Packages directory e.g:
+```
+  cd /Users/whoeveryouare/Library/Application Support/Sublime Text 3/Packages/
+  ln -s /Users/whoeveryouare/where/ever/you/put/the/project CodexAI
+```
+3. Restart sublime
 ## Use
-First: input your OpenAI API key in the preferences.
+First: input your OpenAI API key in the Preferences->Package Settings->CodexAI
 
 ### Completion
-To have the Codex AI try to generate code/text, simply simply highlight whatever prompt you would like to complete, then use the keybinding 'ctrl+shift+insert' to see how Codex would complete that prompt.  
+To have the Codex AI try to generate code/text, simply simply highlight whatever prompt you would like to complete, then use the following keybindings to see how Codex would complete that prompt.
+* Linux: 'ctrl-shift-insert'
+* OSX: 'command-shift-a'
 
 One can also use the command pallet (ctrl+shift+p) and type 'Codex AI' to see the 'Generate' command.
 
 
 ### Editing
-You could also have Codex AI try edit your code -perhaps to translate it to a different langue, or try a more terse implementation, or add documentation. Highlight whatever code you would like edited, then use the keybinding 'ctrl+shift+end' to instruct Codex to re-work that area.  
+You could also have Codex AI try edit your code -perhaps to translate it to a different langue, or try a more terse implementation, or add documentation. Highlight whatever code you would like edited, then use the following keybindings to instruct Codex to re-work that area.
+* Linux: 'ctrl+shift+end' 
+* OSX: 'command-shift-e'
 
 One can also use the command pallet (ctrl+shift+p) and type 'Codex AI' to see the 'Instruct' command.
 
