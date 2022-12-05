@@ -78,7 +78,7 @@ class CompletionCodexCommand(CodexCommand):
         region = self.view.sel()[0]
         settings = sublime.load_settings('codex-ai.sublime-settings')
         settingsc = settings.get('completions')
-        printpromt = settingsc.get('keep_prompt_text')
+
         data = {
             'model': settingsc.get('model',"text-davinci-003"),
             'prompt': self.view.substr(region),
@@ -175,22 +175,22 @@ class AsyncCodex(threading.Thread):
         """
         settings = sublime.load_settings('codex-ai.sublime-settings')
         conn = http.client.HTTPSConnection('api.openai.com')
-        headers={
+        headers = {
             'Authorization': "Bearer " + settings.get('open_ai_key', None),
             'Content-Type': 'application/json'
         }
-        data=json.dumps(self.data)
-        conn.request('POST', '/v1/'+self.endpoint, data, headers)
+        data = json.dumps(self.data)
+        conn.request('POST', '/v1/' + self.endpoint, data, headers)
         response = conn.getresponse()
-        respone_dict=json.loads(response.read().decode())
-        if respone_dict.get('Error', None):
+        respone_dict = json.loads(response.read().decode())
+
+        if respone_dict.get('error', None):
             raise ValueError(respone_dict['Error'])
         else:
             choice = respone_dict.get('choices', [{}])[0]
-            print(choice)
             ai_text = choice['text']
             useage = respone_dict['usage']['total_tokens']
-            sublime.status_message("Codex tokens used: "+str(useage))
+            sublime.status_message("Codex tokens used: " + str(useage))
         return ai_text
 
 
