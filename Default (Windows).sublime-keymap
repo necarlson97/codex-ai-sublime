@@ -1,0 +1,6 @@
+[
+  // Request a prompt based on the highlighted text from codex
+  { "keys": ["ctrl+shift+insert"], "command": "completion_codex" },
+  // Instruct a type of edit on the highlighted text
+  { "keys": ["ctrl+shift+end"], "command": "edit_codex" },
+]
