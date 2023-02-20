@@ -60,9 +60,9 @@ class CodexCommand(sublime_plugin.TextCommand):
 
         # Otherwise, we are done!
         self.view.run_command('replace_text', {
-            "region": thread.region.to_tuple(),
+            "region": [thread.region.begin(),thread.region.end()],
             "text": thread.preText + thread.result
-        })        
+        })
 
 
 class CompletionCodexCommand(CodexCommand):
