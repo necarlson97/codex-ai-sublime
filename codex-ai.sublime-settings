@@ -1,5 +1,5 @@
 {
-    "open_ai_key": "<put your key here from https://beta.openai.com/account/api-keys>",
+    "open_ai_key": "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",
     "max_seconds": 60,
     "completions": {
         "model": "text-davinci-003",

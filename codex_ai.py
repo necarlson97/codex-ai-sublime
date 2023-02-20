@@ -36,6 +36,12 @@ class CodexCommand(sublime_plugin.TextCommand):
         settings = sublime.load_settings('codex-ai.sublime-settings')
         max_seconds = settings.get('max_seconds', 60)
 
+        # If we ran out of time, let user know, stop checking on the thread
+        if seconds > max_seconds:
+            msg = "Codex ran out of time! {}s".format(max_seconds)
+            sublime.status_message(msg)
+            return
+
         # While the thread is running, show them some feedback,
         # and keep checking on the thread
         if thread.running:
@@ -45,12 +51,6 @@ class CodexCommand(sublime_plugin.TextCommand):
             # Wait a second, then check on it again
             sublime.set_timeout(lambda:
                 self.handle_thread(thread, seconds + 1), 1000)
-            return
-
-        # If we ran out of time, let user know, stop checking on the thread
-        if seconds > max_seconds:
-            msg = "Codex ran out of time! {}s".format(max_seconds)
-            sublime.status_message(msg)
             return
 
         # If we finished with no result, something is wrong
@@ -185,7 +185,7 @@ class AsyncCodex(threading.Thread):
         respone_dict = json.loads(response.read().decode())
 
         if respone_dict.get('error', None):
-            raise ValueError(respone_dict['Error'])
+            raise ValueError(respone_dict['error'])
         else:
             choice = respone_dict.get('choices', [{}])[0]
             ai_text = choice['text']
