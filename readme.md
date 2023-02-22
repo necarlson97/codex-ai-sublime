@@ -14,10 +14,16 @@ See [OpenAI](https://openai.com/blog/openai-codex/) for more details on the tech
 Powerful technology can be dangerous. Please use this (and all AI tools) with kindness, care, and the greater good in mind. Supervise all it creates, and, as always, do not run code you do not trust or understand. [Be responsible.](https://beta.openai.com/policies/codex-terms)
 
 ## Installation
-### Linux
-Use Package Control and find CodexAI
-### OSX
-Until upstream publishes this version for OSX in package control, do the following:
+### Easy Install
+On all OSs (Windows, Linux and OSX) you can simply use Package Control and find CodexAI:
+1. Open Sublime
+2. Open 'Package Control' (with 'Preferences' > 'Package Control' or ctrl+shift+p)
+3. Type 'Install Package'
+4. After a moment, it will load available packages
+5. Type 'CodexAI' and this project should appear for downlaod
+
+### Using Githib
+Should you want to pull a specific branch or version from GitHub:
 1. checkout this github project somewhere other than your default Packages directory
 2. create a link to this github project in your Packages directory e.g:
 ```
@@ -29,7 +35,8 @@ Until upstream publishes this version for OSX in package control, do the followi
 First: input your OpenAI API key in the Preferences->Package Settings->CodexAI
 
 ### Completion
-To have the Codex AI try to generate code/text, simply simply highlight whatever prompt you would like to complete, then use the following keybindings to see how Codex would complete that prompt.
+To have the Codex AI try to generate code/text, simply simply highlight whatever prompt you would like to complete, then use the following keybindings to see how Codex would complete that prompt. (Of course, change these defaults to whatever you prefer)
+* Windows: 'ctrl-shift-insert'
 * Linux: 'ctrl-shift-insert'
 * OSX: 'command-shift-a'
 
